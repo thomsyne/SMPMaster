@@ -1,0 +1,36 @@
+﻿@model SMP.app.Models.MenuViewModel
+
+
+
+@{
+            foreach (var p in Model.ParNode)
+            {
+        <li>
+            <a href="#"><i class="@p.ResourceKey fa-fw  blues"></i> @p.ParentName<span class="fa fa-plus"></span></a>
+
+
+            <ul class="nav child_menu">
+                @{
+                    var rst = Model.ChildNode.Where(f => f.ParentId == @p.ParentId);
+                    if (rst != null)
+                    {
+                        foreach (var m in rst)
+                        {
+
+                            <li>
+                                <a href="@Url.Content("~" + m.Url + "?m=" + m.MenuIdEncrypt)"><i class="@m.ResourceKey fa-fw"></i> @m.MenuName</a>
+                            </li>
+                        }
+                    }
+                }
+
+
+            </ul>
+
+        </li>
+                    }
+}
+
+
+
+

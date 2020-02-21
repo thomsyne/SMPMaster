@@ -1,0 +1,102 @@
+﻿@model SMP.app.Models.Staff_Academic
+
+@{
+    ViewBag.Title = "AddOrEdit";
+}
+    <div class="x_panel">
+        <div class="x_title">
+            <a class="btn-sm btn-primary" id="" href="@Url.Action("Index","Staff_Academic")"><i class="fa fa-arrow-left"></i>Back</a>
+        </div>
+
+        <div class="x_content">
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.StaffId, htmlAttributes: new { @class = "control-label col-md-4 col-md-4 col-sm-3 col-xs-12" })
+                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                @Html.DropDownListFor(model => model.StaffId, ViewBag.StaffList as SelectList, "-- Select Staff --", new { @class = "form-control select2 input", style = "width:100%" })
+                                @Html.ValidationMessageFor(model => model.StaffId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.InstitutionName, htmlAttributes: new { @class = "control-label col-md-4 col-md-4 col-sm-3 col-xs-12" })
+                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                @Html.EditorFor(model => model.InstitutionName, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.InstitutionName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="clearfix"></div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.QualificationObtained, htmlAttributes: new { @class = "control-label col-md-4 col-md-4 col-sm-3 col-xs-12" })
+                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                @Html.EditorFor(model => model.QualificationObtained, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.QualificationObtained, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.GraduationYear, htmlAttributes: new { @class = "control-label col-md-4 col-md-4 col-sm-3 col-xs-12" })
+                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                @Html.EditorFor(model => model.GraduationYear, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.GraduationYear, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="clearfix"></div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-4 col-sm-3 col-xs-12" })
+                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                @Html.TextAreaFor(model => model.Address, new { htmlAttributes = new { @class = "form-control input-sm" } })
+                                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                   
+                   
+                    <div class="clearfix"></div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10" style="text-align:center;margin:10px;">
+                            <input type="submit" value="Save" class="btn-sm btn-success fa fa-check" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/temp/vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+
+    <script>
+
+    $('#EventDate').datetimepicker({
+        format: 'DD.MM.YYYY'
+    });
+
+    $('#EventDate2').datetimepicker({
+        format: 'DD.MM.YYYY'
+    });
+    </script>
+
+}

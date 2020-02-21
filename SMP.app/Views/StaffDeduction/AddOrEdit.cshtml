@@ -1,0 +1,150 @@
+﻿@model SMP.app.Models.StaffDeduction
+
+@{
+    ViewBag.Title = "AddOrEdit";
+}
+
+<link href="~/temp/vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css" rel="stylesheet" />
+<link href="~/temp/vendors/normalize-css/normalize.css" rel="stylesheet" />
+<link href="~/temp/vendors/ion.rangeSlider/css/ion.rangeSlider.css" rel="stylesheet" />
+<link href="~/temp/vendors/ion.rangeSlider/css/ion.rangeSlider.skinFlat.css" rel="stylesheet" />
+<link href="~/temp/vendors/mjolnic-bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css" rel="stylesheet" />
+<link href="~/temp/vendors/cropper/dist/cropper.min.css" rel="stylesheet" />
+
+    <div class="x_panel">
+        <div class="x_title">
+            <a class="btn-sm btn-primary" id="" href="@Url.Action("Index","StaffDeduction")"><i class="fa fa-arrow-left"></i>Back</a>
+        </div>
+
+        <div class="x_content">
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.DeductionId, htmlAttributes: new { @class = "control-label col-md-4 col-md-4 col-sm-3 col-xs-12" })
+                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                @Html.DropDownListFor(model => model.DeductionId, ViewBag.DeductionList as SelectList, "-- Select Deduction --", new { @class = "form-control select2 input", style = "width:100%" })
+                                @Html.ValidationMessageFor(model => model.DeductionId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.StaffId, htmlAttributes: new { @class = "control-label col-md-4 col-md-4 col-sm-3 col-xs-12" })
+                            <div class="col-md-8 col-sm-6 col-xs-12">
+                               @Html.DropDownListFor(model => model.StaffId, ViewBag.StaffList as SelectList, "-- Select Staff --", new { @class = "form-control select2 input", style = "width:100%" })
+                            @Html.ValidationMessageFor(model => model.StaffId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="clearfix"></div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Amount, htmlAttributes: new { @class = "control-label col-md-4 col-md-4 col-sm-3 col-xs-12" })
+                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.RateType, htmlAttributes: new { @class = "control-label col-md-4 col-md-4 col-sm-3 col-xs-12" })
+                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                @Html.EditorFor(model => model.RateType, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.RateType, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Frequency, htmlAttributes: new { @class = "control-label col-md-4 col-md-4 col-sm-3 col-xs-12" })
+                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                @Html.EditorFor(model => model.Frequency, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Frequency, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ActualAmount, htmlAttributes: new { @class = "control-label col-md-4 col-md-4 col-sm-3 col-xs-12" })
+                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                @Html.EditorFor(model => model.ActualAmount, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.ActualAmount, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="clearfix"></div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Deduction_Start, htmlAttributes: new { @class = "control-label col-md-4 col-sm-3 col-xs-12" })
+                            <div class="col-md-8 col-sm-9 col-xs-12">
+                                <div class='input-group date' id="EventDate">
+                                    @Html.TextBoxFor(model => model.Deduction_Start, new { @class = "form-control input-sm" })
+                                    @Html.ValidationMessageFor(model => model.Deduction_Start)
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Deduction_End, htmlAttributes: new { @class = "control-label col-md-4 col-sm-3 col-xs-12" })
+                            <div class="col-md-8 col-sm-9 col-xs-12">
+                                <div class='input-group date' id="EventDate2">
+                                    @Html.TextBoxFor(model => model.Deduction_End, new { @class = "form-control input-sm" })
+                                    @Html.ValidationMessageFor(model => model.Deduction_End)
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10" style="text-align:center;margin:10px;">
+                            <input type="submit" value="Save" class="btn-sm btn-success fa fa-check" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+@section Scripts {
+@Scripts.Render("~/bundles/jqueryval")
+<script src="~/temp/vendors/cropper/dist/cropper.min.js"></script>
+<script src="~/temp/vendors/ion.rangeSlider/js/ion.rangeSlider.min.js"></script>
+<script src="~/temp/vendors/jquery-knob/dist/jquery.knob.min.js"></script>
+<script src="~/temp/vendors/jquery.inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
+<script src="~/temp/vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+
+    <script>
+
+    $('#EventDate').datetimepicker({
+        format: 'DD.MM.YYYY'
+    });
+
+    $('#EventDate2').datetimepicker({
+        format: 'DD.MM.YYYY'
+    });
+    </script>
+
+}

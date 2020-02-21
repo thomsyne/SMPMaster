@@ -1,0 +1,124 @@
+﻿@model SMP.app.Models.Arms
+
+@{
+    ViewBag.Title = "AddOrEdit";
+}
+    <div class="x_panel">
+        <div class="x_title">
+            <a class="btn-sm btn-primary" id="" href="@Url.Action("Index","Arms")"><i class="fa fa-arrow-left"></i>Back</a>
+        </div>
+
+        <div class="x_content">
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.SchoolId, htmlAttributes: new { @class = "control-label col-md-4 col-md-4 col-sm-3 col-xs-12" })
+                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                @Html.DropDownListFor(model => model.SchoolId, ViewBag.School_DetailsList as SelectList, "-- Select School --", new { @class = "form-control select2 input", style = "width:100%" })
+                                @Html.ValidationMessageFor(model => model.SchoolId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.CampusId, htmlAttributes: new { @class = "control-label col-md-4 col-md-4 col-sm-3 col-xs-12" })
+                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                @Html.DropDownListFor(model => model.CampusId, ViewBag.CampusList as SelectList, "-- Select Campus --", new { @class = "form-control select2 input", style = "width:100%" })
+                                @Html.ValidationMessageFor(model => model.CampusId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ProgramId, htmlAttributes: new { @class = "control-label col-md-4 col-md-4 col-sm-3 col-xs-12" })
+                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                @Html.DropDownListFor(model => model.ProgramId, ViewBag.ProgramList as SelectList, "-- Select Program --", new { @class = "form-control select2 input", style = "width:100%" })
+                                @Html.ValidationMessageFor(model => model.ProgramId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ClassId, htmlAttributes: new { @class = "control-label col-md-4 col-md-4 col-sm-3 col-xs-12" })
+                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                @Html.DropDownListFor(model => model.ClassId, ViewBag.ClassList as SelectList, "-- Select Class --", new { @class = "form-control select2 input", style = "width:100%" })
+                                @Html.ValidationMessageFor(model => model.ClassId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-4 col-md-4 col-sm-3 col-xs-12" })
+                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ClassTeacherId, htmlAttributes: new { @class = "control-label col-md-4 col-md-4 col-sm-3 col-xs-12" })
+                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                @Html.DropDownListFor(model => model.ClassTeacherId, ViewBag.StaffList as SelectList, "-- Select Class Teacher --", new { @class = "form-control select2 input", style = "width:100%" })
+                                @Html.ValidationMessageFor(model => model.ClassTeacherId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.No_Of_Student, htmlAttributes: new { @class = "control-label col-md-4 col-md-4 col-sm-3 col-xs-12" })
+                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                @Html.EditorFor(model => model.No_Of_Student, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.No_Of_Student, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Max_No_Of_Student, htmlAttributes: new { @class = "control-label col-md-4 col-md-4 col-sm-3 col-xs-12" })
+                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                @Html.EditorFor(model => model.Max_No_Of_Student, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Max_No_Of_Student, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Staff_TypeId, htmlAttributes: new { @class = "control-label col-md-4 col-md-4 col-sm-3 col-xs-12" })
+                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                @Html.DropDownListFor(model => model.Staff_TypeId, ViewBag.Staff_TypeList as SelectList, "-- Select Staff Type --", new { @class = "form-control select2 input", style = "width:100%" })
+                                @Html.ValidationMessageFor(model => model.Staff_TypeId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10" style="text-align:center;margin:10px;">
+                            <input type="submit" value="Save" class="btn-sm btn-success fa fa-check" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+@section Scripts {
+
+}

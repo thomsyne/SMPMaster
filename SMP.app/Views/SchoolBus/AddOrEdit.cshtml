@@ -1,0 +1,111 @@
+﻿@model SMP.app.Models.School_Bus
+
+@{
+    ViewBag.Title = "Create";
+}
+
+    <div class="x_panel">
+        <div class="x_title">
+            <a href="@Url.Action("Index", "SchoolBus")" class="btn-primary btn-sm"><i class="fa fa-arrow-left"> Back</i></a>
+        </div>
+        <div class="x_content">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-horizontal">
+
+                    @Html.HiddenFor(model => model.ItbId)
+                    <div class="col-md-6">
+                        <div class="form-group">
+                                @Html.LabelFor(model => model.SchoolId, htmlAttributes: new { @class = "control-label col-md-4 col-sm-3 col-xs-12" })
+                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                @Html.DropDownListFor(model => model.SchoolId, ViewBag.School_DetailsList as SelectList, "-- Select School --", new { @class = "form-control select2 input", style = "width:100%" })
+                                @Html.ValidationMessageFor(model => model.SchoolId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-4 col-sm-3 col-xs-12" })
+                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                @Html.TextBoxFor(model => model.Name, new { @class = "form-control input-sm" })
+                                @Html.ValidationMessageFor(model => model.Name)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                                @Html.LabelFor(model => model.RouteId, htmlAttributes: new { @class = "control-label col-md-4 col-sm-3 col-xs-12" })
+                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                @Html.DropDownListFor(model => model.RouteId, ViewBag.RouteList as SelectList, "-- Select Route --", new { @class = "form-control select2 input", style = "width:100%" })
+                                @Html.ValidationMessageFor(model => model.RouteId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                                @Html.LabelFor(model => model.Driver_Name, htmlAttributes: new { @class = "control-label col-md-4 col-sm-3 col-xs-12" })
+                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                @Html.TextBoxFor(model => model.Driver_Name, new { @class = "form-control input-sm" })
+                                @Html.ValidationMessageFor(model => model.Driver_Name)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                                @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-4 col-sm-3 col-xs-12" })
+                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                @Html.TextBoxFor(model => model.Price, new { @class = "form-control input-sm" })
+                                @Html.ValidationMessageFor(model => model.Price)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Driver_Phone_No, htmlAttributes: new { @class = "control-label col-md-4 col-sm-3 col-xs-12" })
+                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                @Html.TextBoxFor(model => model.Driver_Phone_No, new { @class = "form-control input-sm" })
+                                @Html.ValidationMessageFor(model => model.Driver_Phone_No)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-12 col-sm-12 col-xs-12" style="text-align:center;">
+                            <input type="submit" value="Save" class="btn-sm btn-success" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/temp/vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+
+    <script>
+
+        $('#StartDate').datetimepicker({
+            format: 'DD.MM.YYYY'
+        });
+
+        $('#EndDate').datetimepicker({
+            format: 'DD.MM.YYYY'
+        });
+
+
+        $('#StartTime').datetimepicker({
+            format: 'hh:mm A'
+        });
+
+        $('#EndTime').datetimepicker({
+            format: 'hh:mm A'
+        });
+
+    </script>
+}

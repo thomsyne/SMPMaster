@@ -1,0 +1,320 @@
+﻿@model SMP.app.Models.Staff
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<link href="~/temp/vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css" rel="stylesheet" />
+<link href="~/temp/vendors/normalize-css/normalize.css" rel="stylesheet" />
+<link href="~/temp/vendors/ion.rangeSlider/css/ion.rangeSlider.css" rel="stylesheet" />
+<link href="~/temp/vendors/ion.rangeSlider/css/ion.rangeSlider.skinFlat.css" rel="stylesheet" />
+<link href="~/temp/vendors/mjolnic-bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css" rel="stylesheet" />
+<link href="~/temp/vendors/cropper/dist/cropper.min.css" rel="stylesheet" />
+
+    <div class="x_panel">
+        <div class="x_title">
+            <a href="@Url.Action("Index", "Staff")" class="btn-primary btn-sm"><i class="fa fa-arrow-left"> Back</i></a>
+        </div>
+        <div class="x_content">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-horizontal">
+
+                    @Html.HiddenFor(model => model.ItbId)
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.SchoolId, htmlAttributes: new { @class = "control-label col-md-4 col-sm-3 col-xs-12", })
+                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                @Html.DropDownListFor(model => model.SchoolId, ViewBag.School_DetailsList as SelectList, "-- Select School --", new { @class = "form-control select2 input", style = "width:100%" })
+                                @Html.ValidationMessageFor(model => model.SchoolId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-4 col-sm-3 col-xs-12", })
+                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-4 col-sm-3 col-xs-12", })
+                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.MiddleName, htmlAttributes: new { @class = "control-label col-md-4 col-sm-3 col-xs-12", })
+                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                @Html.EditorFor(model => model.MiddleName, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.MiddleName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Staff_Code, htmlAttributes: new { @class = "control-label col-md-4 col-sm-3 col-xs-12", })
+                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                @Html.EditorFor(model => model.Staff_Code, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Staff_Code, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.CountryId, htmlAttributes: new { @class = "control-label col-md-4 col-sm-3 col-xs-12", })
+                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                @Html.DropDownListFor(model => model.CountryId, ViewBag.CountryList as SelectList, "--Select Country--", new { @class = "form-control select2 input", style = "width:100%" })
+                                @Html.ValidationMessageFor(model => model.CountryId)
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.LeaveTypeId, htmlAttributes: new { @class = "control-label col-md-4 col-sm-3 col-xs-12", })
+                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                @Html.DropDownListFor(model => model.LeaveTypeId, ViewBag.LeaveTypeList as SelectList, "--Select Leave Type--", new { @class = "form-control select2 input", style = "width:100%" })
+                                @Html.ValidationMessageFor(model => model.LeaveTypeId)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.LevelSetupId, htmlAttributes: new { @class = "control-label col-md-4 col-sm-3 col-xs-12", })
+                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                @Html.DropDownListFor(model => model.LevelSetupId, ViewBag.LevelSetupList as SelectList, "--Select Level--", new { @class = "form-control select2 input", style = "width:100%" })
+                                @Html.ValidationMessageFor(model => model.LevelSetupId)
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.StateId, htmlAttributes: new { @class = "control-label col-md-4 col-sm-3 col-xs-12", })
+                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                @Html.DropDownListFor(model => model.StateId, ViewBag.StateList as SelectList, "--Select State--", new { @class = "form-control select2 input", style = "width:100%" })
+                                @Html.ValidationMessageFor(model => model.StateId)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Date_Of_Birth, htmlAttributes: new { @class = "control-label col-md-4 col-sm-3 col-xs-12", style = "top:-10px" })
+                            <div class="col-md-8 col-sm-9 col-xs-12">
+                                <div class='input-group date' id="DOB">
+                                    @Html.TextBoxFor(model => model.Date_Of_Birth, new { @class = "form-control input-sm" })
+                                    @Html.ValidationMessageFor(model => model.Date_Of_Birth)
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Date_Of_Appointment, htmlAttributes: new { @class = "control-label col-md-4 col-sm-3 col-xs-12", style = "top:-10px" })
+                            <div class="col-md-8 col-sm-9 col-xs-12">
+                                <div class='input-group date' id="DOA">
+                                    @Html.TextBoxFor(model => model.Date_Of_Appointment, new { @class = "form-control input-sm" })
+                                    @Html.ValidationMessageFor(model => model.Date_Of_Appointment)
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Mobile_Phone1, htmlAttributes: new { @class = "control-label col-md-4 col-sm-3 col-xs-12", })
+                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                @Html.EditorFor(model => model.Mobile_Phone1, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Mobile_Phone1, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Mobile_Phone2, htmlAttributes: new { @class = "control-label col-md-4 col-sm-3 col-xs-12", })
+                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                @Html.EditorFor(model => model.Mobile_Phone2, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Mobile_Phone2, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.GenderId, htmlAttributes: new { @class = "control-label col-md-4 col-sm-3 col-xs-12", })
+                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                @Html.DropDownListFor(model => model.GenderId, ViewBag.GenderList as SelectList, "--Select Gender--", new { @class = "form-control select2 input", style = "width:100%" })
+                                @Html.ValidationMessageFor(model => model.GenderId)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ProgramId, htmlAttributes: new { @class = "control-label col-md-4 col-sm-3 col-xs-12", })
+                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                @Html.DropDownListFor(model => model.ProgramId, ViewBag.ProgramList as SelectList, "--Select Program--", new { @class = "form-control select2 input", style = "width:100%" })
+                                @Html.ValidationMessageFor(model => model.ProgramId)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Blood_GroupId, htmlAttributes: new { @class = "control-label col-md-4 col-sm-3 col-xs-12", })
+                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                    @Html.DropDownListFor(model => model.Blood_GroupId, ViewBag.Blood_GroupList as SelectList, "--Select Blood Group--", new { @class = "form-control select2 input", style = "width:100%" })
+                                    @Html.ValidationMessageFor(model => model.Blood_GroupId)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.CampusId, htmlAttributes: new { @class = "control-label col-md-4 col-sm-3 col-xs-12", })
+                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                @Html.DropDownListFor(model => model.CampusId, ViewBag.CampusList as SelectList, "--Select Campus--", new { @class = "form-control select2 input", style = "width:100%" })
+                                @Html.ValidationMessageFor(model => model.CampusId)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.SubjectId, htmlAttributes: new { @class = "control-label col-md-4 col-sm-3 col-xs-12", })
+                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                @Html.DropDownListFor(model => model.SubjectId, ViewBag.SubjectList as SelectList, "--Select Subject--", new { @class = "form-control select2 input", style = "width:100%" })
+                                @Html.ValidationMessageFor(model => model.SubjectId)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-4 col-sm-3 col-xs-12", })
+                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Marital_StatusId, htmlAttributes: new { @class = "control-label col-md-4 col-sm-3 col-xs-12", })
+                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                @Html.DropDownListFor(model => model.Marital_StatusId, ViewBag.Marital_StatusList as SelectList, "--Select Marital Status--", new { @class = "form-control select2 input", style = "width:100%" })
+                                @Html.ValidationMessageFor(model => model.Marital_StatusId)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.DesignationId, htmlAttributes: new { @class = "control-label col-md-4 col-sm-3 col-xs-12", })
+                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                @Html.DropDownListFor(model => model.DesignationId, ViewBag.DesignationList as SelectList, "--Select Designation--", new { @class = "form-control select2 input", style = "width:100%" })
+                                @Html.ValidationMessageFor(model => model.DesignationId)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Account_No, htmlAttributes: new { @class = "control-label col-md-4 col-sm-3 col-xs-12", })
+                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                @Html.EditorFor(model => model.Account_No, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Account_No, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Office_Extension, htmlAttributes: new { @class = "control-label col-md-4 col-sm-3 col-xs-12", })
+                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                @Html.EditorFor(model => model.Office_Extension, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Office_Extension, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Staff_TypeId, htmlAttributes: new { @class = "control-label col-md-4 col-sm-3 col-xs-12", })
+                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                @Html.DropDownListFor(model => model.Staff_TypeId, ViewBag.Staff_TypeList as SelectList, "--Select Staff Type--", new { @class = "form-control select2 input", style = "width:100%" })
+                                @Html.ValidationMessageFor(model => model.Staff_TypeId)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.DeptId, htmlAttributes: new { @class = "control-label col-md-4 col-sm-3 col-xs-12", })
+                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                @Html.DropDownListFor(model => model.DeptId, ViewBag.DepartmentList as SelectList, "--Select Department--", new { @class = "form-control select2 input", style = "width:100%" })
+                                @Html.ValidationMessageFor(model => model.DeptId)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-4 col-sm-3 col-xs-12", })
+                            <div class="col-md-8 col-sm-9 col-xs-12">
+                                @Html.TextAreaFor(model => model.Address, new { htmlAttributes = new { @class = "form-control input-sm" } })
+                                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6" style="float:right; padding-left:120px">
+                        <img src="~/Content/SchoolLogo.png" style="margin:3px;" height="150" width="150">
+                        <input type="file" name="ImageUpload" accept="image/jpeg, image/png" />
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-12 col-sm-12 col-xs-12" style="text-align:center;">
+                            <input type="submit" value="Save" class="btn btn-success" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+
+@section scripts{
+    <script src="~/temp/vendors/cropper/dist/cropper.min.js"></script>
+    <script src="~/temp/vendors/ion.rangeSlider/js/ion.rangeSlider.min.js"></script>
+    <script src="~/temp/vendors/jquery-knob/dist/jquery.knob.min.js"></script>
+    <script src="~/temp/vendors/jquery.inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
+    <script src="~/temp/vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+    <script>
+
+    $('#DOB').datetimepicker({
+        format: 'DD.MM.YYYY'
+    });
+
+    $('#DOA').datetimepicker({
+        format: 'DD.MM.YYYY'
+    });
+    </script>
+
+@Scripts.Render("~/bundles/jqueryval")
+<script src="~/temp/vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+
+
+}

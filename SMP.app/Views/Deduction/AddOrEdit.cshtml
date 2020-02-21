@@ -1,0 +1,78 @@
+﻿@model SMP.app.Models.Deduction
+
+@{
+    ViewBag.Title = "AddOrEdit";
+}
+
+<link href="~/temp/vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css" rel="stylesheet" />
+<link href="~/temp/vendors/normalize-css/normalize.css" rel="stylesheet" />
+<link href="~/temp/vendors/ion.rangeSlider/css/ion.rangeSlider.css" rel="stylesheet" />
+<link href="~/temp/vendors/ion.rangeSlider/css/ion.rangeSlider.skinFlat.css" rel="stylesheet" />
+<link href="~/temp/vendors/mjolnic-bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css" rel="stylesheet" />
+<link href="~/temp/vendors/cropper/dist/cropper.min.css" rel="stylesheet" />
+
+    <div class="x_panel">
+        <div class="x_title">
+            <a class="btn-sm btn-primary" id="" href="@Url.Action("Index","Deduction")"><i class="fa fa-arrow-left"></i>Back</a>
+        </div>
+
+        <div class="x_content">
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="col-md-6" style="margin-left: 100px;">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-4 col-md-4 col-sm-3 col-xs-12" })
+                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.RateTypeId, htmlAttributes: new { @class = "control-label col-md-4 col-md-4 col-sm-3 col-xs-12" })
+                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                @Html.DropDownListFor(model => model.RateTypeId, ViewBag.RateTypeList as SelectList, "-- Select Rate --", new { @class = "form-control select2 input", style = "width:100%" })
+                                @Html.ValidationMessageFor(model => model.RateTypeId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10" style="text-align:center;margin:10px;">
+                            <input type="submit" value="Save" class="btn-sm btn-success fa fa-check" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+
+@section Scripts {
+@Scripts.Render("~/bundles/jqueryval")
+<script src="~/temp/vendors/cropper/dist/cropper.min.js"></script>
+<script src="~/temp/vendors/ion.rangeSlider/js/ion.rangeSlider.min.js"></script>
+<script src="~/temp/vendors/jquery-knob/dist/jquery.knob.min.js"></script>
+<script src="~/temp/vendors/jquery.inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
+<script src="~/temp/vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+
+    <script>
+
+    $('#EventDate').datetimepicker({
+        format: 'DD.MM.YYYY'
+    });
+
+    $('#EventDate2').datetimepicker({
+        format: 'DD.MM.YYYY'
+    });
+    </script>
+
+}

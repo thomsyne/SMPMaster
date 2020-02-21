@@ -1,0 +1,118 @@
+﻿@model SMP.app.Models.Users
+
+@{
+    ViewBag.Title = "Create";
+}
+
+    <div class="x_panel">
+        <div class="x_title">
+            <a href="@Url.Action("Index", "Users")" class="btn-primary btn-sm"><i class="fa fa-arrow-left"> Back</i></a>
+        </div>
+        <div class="x_content">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-horizontal">
+
+                    @Html.HiddenFor(model => model.ItbId)
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-4 col-sm-3 col-xs-12", })
+                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-4 col-sm-3 col-xs-12", })
+                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Phone_No, htmlAttributes: new { @class = "control-label col-md-4 col-sm-3 col-xs-12", })
+                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                @Html.TextBoxFor(model => model.Phone_No, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Phone_No, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-4 col-sm-3 col-xs-12", })
+                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                @Html.TextBoxFor(model => model.Username, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-4 col-sm-3 col-xs-12", })
+                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                @Html.TextBoxFor(model => model.Password, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Account_TypeId, htmlAttributes: new { @class = "control-label col-md-4 col-sm-3 col-xs-12", })
+                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                @Html.DropDownListFor(model => model.Account_TypeId, ViewBag.AccountTypeList as SelectList, "--Select Account Type--", new { @class = "form-control select2 input", style = "width:100%" })
+                                @Html.ValidationMessageFor(model => model.Account_TypeId)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-4 col-sm-3 col-xs-12", })
+                            <div class="col-md-8 col-sm-9 col-xs-12">
+                                @Html.TextAreaFor(model => model.Address, new { @class = "form-control input-sm" })
+                            </div>
+                        </div>
+                    </div>
+
+                  
+                    <div class="form-group">
+                        <div class="col-md-12 col-sm-12 col-xs-12" style="text-align:center;">
+                            <input type="submit" value="Save" class="btn-sm btn-success" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/temp/vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+
+    <script>
+
+        $('#StartDate').datetimepicker({
+            format: 'DD.MM.YYYY'
+        });
+
+        $('#EndDate').datetimepicker({
+            format: 'DD.MM.YYYY'
+        });
+
+
+        $('#StartTime').datetimepicker({
+            format: 'hh:mm A'
+        });
+
+        $('#EndTime').datetimepicker({
+            format: 'hh:mm A'
+        });
+
+    </script>
+}

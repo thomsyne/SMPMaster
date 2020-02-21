@@ -1,0 +1,4 @@
+﻿1>------ Build started: Project: SMP.app, Configuration: Debug Any CPU ------
+1>C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Microsoft.Common.CurrentVersion.targets(1987,5): warning MSB3277: Found conflicts between different versions of the same dependent assembly that could not be resolved.  These reference conflicts are listed in the build log when log verbosity is set to detailed.
+1>  SMP.app -> C:\apps\SMP\SMPMaster\SMP.app\bin\SMP.app.dll
+========== Build: 1 succeeded, 0 failed, 2 up-to-date, 0 skipped ==========

@@ -1,0 +1,93 @@
+﻿@model IEnumerable<SMP.app.Models.Events>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<link href="~/temp/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<link href="~/temp/vendors/datatables.net-bs/css/dataTables.bootstrap.css" rel="stylesheet" />
+<link href="~/temp/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet" />
+<link href="~/temp/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet" />
+<link href="~/temp/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet" />
+<link href="~/temp/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet" />
+
+    <div class="x_panel">
+        <div class="x_title">
+            <a href="@Url.Action("AddOrEdit","Events")" class="btn-primary btn-sm" type="reset"><i class="fa fa-plus">Add New </i></a>
+        </div>
+        <div class="x_content">
+            <div id="datatable-buttons_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                <table id="datatable-buttons" class="table table-striped table-bordered dataTable no-footer dtr-inline" role="grid" aria-describedby="datatable-buttons_info">
+                    <thead>
+                        <tr role="row">
+                            <th class="sorting_asc" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">
+                                @Html.DisplayNameFor(model => model.Event_Title)
+                            </th>
+                            <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending">
+                                @Html.DisplayNameFor(model => model.Venue)
+                            </th>
+                            <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending">
+                                @Html.DisplayNameFor(model => model.Event_Type)
+                            </th>
+                            <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending">
+                                @Html.DisplayNameFor(model => model.SessionId)
+                            </th>
+                            <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending">
+                                @Html.DisplayNameFor(model => model.Description)
+                            </th>
+                            <th class="sorting" tabindex="0" aria-controls="datatable-buttons" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending">
+                                @Html.DisplayNameFor(model => model.CampusId)
+                            </th>
+                            <th style="width:80px">
+                                (Action)
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model != null)
+                        {
+                            foreach(var item in Model)
+                            { 
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.Event_Title)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Venue)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Event_Type)</td>
+                                <td>@Html.DisplayFor(modelItem => item.SessionId)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                                <td>@Html.DisplayFor(modelItem => item.CampusId)</td>
+                                <td>
+                                    <a href="@Url.Action("AddOrEdit","Events", new { id = item.ItbId})" class="btn-sm btn-primary" onclick=""><span class="fa fa-edit"></span></a>
+                                </td>
+                            </tr>
+                        }
+                     }
+                    </tbody>
+                </table>
+                </div>
+            </div>
+        </div>
+
+@section Scripts{
+    <script src="~/temp/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="~/temp/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="~/temp/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script src="~/temp/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+<script src="~/temp/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+<script src="~/temp/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+<script src="~/temp/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+<script src="~/temp/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+<script src="~/temp/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+    <script>
+     $(function () {
+                var successMessage = '@TempData["SuccessMessage"]'
+                if (successMessage != '')
+                alertify.success(successMessage);
+                });
+
+                function Delete(id) {
+                alertify.confirm('School Management Portal', 'Are you sure to Delete this record ?', function () {
+                window.location.href = '@Url.Action("Delete", "SchoolProfile")/' + id;
+                }, null)
+                }
+     </script>
+}

@@ -1,0 +1,137 @@
+﻿@model SMP.app.Models.Schedule_Timetable
+@{
+    ViewBag.Title = "Create";
+}
+
+    <div class="x_panel">
+        <div class="x_title">
+            <a href="@Url.Action("Index", "Schedule")" class="btn-primary btn-sm"><i class="fa fa-arrow-left"> Back</i></a>
+        </div>
+        <div class="x_content">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-horizontal">
+
+                    @Html.HiddenFor(model => model.ItbId)
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.SchoolId, htmlAttributes: new { @class = "control-label col-md-4 col-sm-3 col-xs-12", })
+                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                @Html.DropDownListFor(model => model.SchoolId, ViewBag.School_DetailsList as SelectList, "-- Select School --", new { @class = "form-control select2 input", style = "width:100%" })
+                                @Html.ValidationMessageFor(model => model.SchoolId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ClassId, htmlAttributes: new { @class = "control-label col-md-4 col-sm-3 col-xs-12", })
+                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                @Html.DropDownListFor(model => model.ClassId, ViewBag.ClassList as SelectList, "--Select Class--", new { @class = "form-control select2 input", style = "width:100%" })
+                                @Html.ValidationMessageFor(model => model.ClassId)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ArmId, htmlAttributes: new { @class = "control-label col-md-4 col-sm-3 col-xs-12", })
+                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                @Html.DropDownListFor(model => model.ArmId, ViewBag.ArmList as SelectList, "--Select Arm--", new { @class = "form-control select2 input", style = "width:100%" })
+                                @Html.ValidationMessageFor(model => model.ArmId)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.SessionId, htmlAttributes: new { @class = "control-label col-md-4 col-sm-3 col-xs-12", })
+                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                @Html.DropDownListFor(model => model.SessionId, ViewBag.SessionList as SelectList, "--Select Session--", new { @class = "form-control select2 input", style = "width:100%" })
+                                @Html.ValidationMessageFor(model => model.SessionId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.TermId, htmlAttributes: new { @class = "control-label col-md-4 col-sm-3 col-xs-12", })
+                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                @Html.DropDownListFor(model => model.TermId, ViewBag.TermList as SelectList, "--Select Term--", new { @class = "form-control select2 input", style = "width:100%" })
+                                @Html.ValidationMessageFor(model => model.TermId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.PeriodId, htmlAttributes: new { @class = "control-label col-md-4 col-sm-3 col-xs-12", })
+                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                @Html.DropDownListFor(model => model.PeriodId, ViewBag.PeriodList as SelectList, "--Select Period--", new { @class = "form-control select2 input", style = "width:100%" })
+                                @Html.ValidationMessageFor(model => model.PeriodId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6" style="margin-top:10px">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Start_Time, htmlAttributes: new { @class = "control-label col-md-4 col-sm-3 col-xs-12", style = "top:-10px" })
+                            <div class="col-md-8 col-sm-9 col-xs-12" style="top:-10px;">
+                                <div class='input-group date' id="StartTime">
+                                    @Html.TextBoxFor(model => model.Start_Time, new { @class = "form-control input-sm" })
+                                    @Html.ValidationMessageFor(model => model.Start_Time)
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.SubjectId, htmlAttributes: new { @class = "control-label col-md-4 col-sm-3 col-xs-12", })
+                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                @Html.DropDownListFor(model => model.SubjectId, ViewBag.SubjectList as SelectList, "--Select Subject--", new { @class = "form-control select2 input", style = "width:100%" })
+                                @Html.ValidationMessageFor(model => model.SubjectId)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="clearfix"></div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.End_time, htmlAttributes: new { @class = "control-label col-md-4 col-sm-3 col-xs-12", style = "top:-10px" })
+                            <div class="col-md-8 col-sm-9 col-xs-12" style="top:-10px;">
+                                <div class='input-group date' id="EndTime">
+                                    @Html.TextBoxFor(model => model.End_time, new { @class = "form-control input-sm" })
+                                    @Html.ValidationMessageFor(model => model.End_time)
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-12 col-sm-12 col-xs-12" style="text-align:center;">
+                            <input type="submit" value="Save" class="btn-sm btn-success" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/temp/vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+    <script>
+
+        $('#StartTime').datetimepicker({
+            format: 'hh:mm A'
+        });
+
+        $('#EndTime').datetimepicker({
+            format: 'hh:mm A'
+        });
+
+    </script>
+}

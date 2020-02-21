@@ -1,0 +1,9 @@
+﻿.right-side {
+    height:100%;
+    width:100%;
+}
+.left-side {
+    background-color:forestgreen;
+    height:100%;
+    width:50%;
+}
